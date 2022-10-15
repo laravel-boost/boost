@@ -2,7 +2,9 @@
 
 namespace Boost;
 
+use Boost\Events\BoostServiceProviderRegistered;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
 
 class Boost
@@ -41,5 +43,16 @@ class Boost
     public static function host()
     {
         return config('boost.host');
+    }
+
+    /**
+     * Register an event listener for the Boost "booted" event.
+     *
+     * @param  (\Closure(\Boost\Events\BoostServiceProviderRegistered):void)|string  $callback
+     * @return void
+     */
+    public static function booted($callback)
+    {
+        Event::listen(BoostServiceProviderRegistered::class, $callback);
     }
 }

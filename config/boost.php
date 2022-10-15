@@ -22,9 +22,24 @@ return [
     |
     | This value is the "domain name" associated with your application. This
     | can be used to prevent Boost's internal routes from being registered
-    | on subdomains which do not need access to your admin application.
+    | on subdomains which do not need to handle by your application.
     |
     */
 
     'domain' => env('BOOST_DOMAIN_NAME', null),
+
+    'ports' => [443, 80],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Boost Ignored Path
+    |--------------------------------------------------------------------------
+    |
+    | This value is an array of the path's that Boost has to ignore it.
+    | This can be used to prevent Boost's internal routes from being
+    | registered on path's which do not need to handle by your application.
+    |
+    */
+
+    'excepts' => [],
 ];

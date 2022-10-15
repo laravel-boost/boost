@@ -2,6 +2,7 @@
 
 namespace Boost;
 
+use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Illuminate\Support\ServiceProvider;
 
 class BoostServiceProvider extends ServiceProvider
@@ -23,5 +24,7 @@ class BoostServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/boost.php', 'boost');
+        $this->app->make(HttpKernel::class)
+            ->pushMiddleware(Http\Middleware\ServeBoost::class);
     }
 }
